@@ -5,12 +5,12 @@
     string date = Model.Date.ToString();
 
     string body = Model.Body;
-    string? to = Model.To.ToString();
+    string? to = Model.To.FirstOrDefault().ToString();
 
 }
 
-<h1>@subject</h1>
+<div class="mailSubject"><h1>@subject</h1></div>
 
-<h2>@from  ---> @to      | @date </h2>
+<div class ="mailSubject"><h2>@from  ---> @to      | @date </h2></div>
 
-<p>@body</p>
+<div class="mailBody customScroll">@body</div>

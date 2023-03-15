@@ -7,12 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace EmailProject.Controllers
 {
     public class HomeController : Controller
     {
         static List<AE.Net.Mail.MailMessage> messages = new List<AE.Net.Mail.MailMessage>();
+        static ImapClient IC;
 
         [HttpGet]
         public IActionResult Index()
@@ -35,7 +38,9 @@ namespace EmailProject.Controllers
             AE.Net.Mail.MailMessage message = new AE.Net.Mail.MailMessage();
 
             message = messages.FirstOrDefault(x => x.Uid == emailId);
-            return View(message);
+
+            var convertedMessage = message; //ConvertEmailBodyToHtml(message);
+            return View(convertedMessage);
         }
         public bool send(EmailModel model)
         {
@@ -112,7 +117,6 @@ namespace EmailProject.Controllers
                 return false;
         }
 
-        static ImapClient IC;
 
         public List<AE.Net.Mail.MailMessage> GetEmails()
         {
@@ -132,6 +136,32 @@ namespace EmailProject.Controllers
             }
           
           return messages;
+        }
+
+        public string ConvertEmailBodyToHtml(AE.Net.Mail.MailMessage message)
+        {
+            var body = message.Body;
+
+            // Convert plain text to HTML
+            var htmlBody = new StringBuilder();
+           
+
+            // Convert links to HTML
+            var linkRegex = new Regex(@"(http|https)://[^\s]+");
+            var linkedBody = linkRegex.Replace(body, "<a href=\"$0\" target=\"_blank\">$0</a>");
+            htmlBody.AppendLine(linkedBody);
+
+            // Convert images to HTML
+            var imgRegex = new Regex(@"(http|https)://[^\s]+\.(jpg|jpeg|gif|png)");
+            var imgMatches = imgRegex.Matches(body);
+            foreach (Match match in imgMatches)
+            {
+                var imgSrc = match.Value;
+                htmlBody.AppendLine($"<img src=\"{imgSrc}\" alt=\"{imgSrc}\"/>");
+            }
+
+
+            return htmlBody.ToString();
         }
 
     }
