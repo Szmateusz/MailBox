@@ -1,0 +1,16 @@
+﻿@model AE.Net.Mail.MailMessage;
+@{
+    string subject = Model.Subject;
+    string from = Model.From.ToString();
+    string date = Model.Date.ToString();
+
+    string body = Model.Body;
+    string? to = Model.To.ToString();
+
+}
+
+<h1>@subject</h1>
+
+<h2>@from  ---> @to      | @date </h2>
+
+<p>@body</p>

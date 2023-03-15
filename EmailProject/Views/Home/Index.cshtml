@@ -1,0 +1,103 @@
+﻿@using EmailProject.Models;
+
+@model IndexModel;
+@{
+    string data = null;
+
+
+    try
+    {
+        data = ViewData["data"].ToString();
+
+    }catch{}
+
+}
+
+@if (data!= null)
+{
+
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@data");
+        };
+    </script>
+}
+
+
+<div class="mailBox">
+    @using (@Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div id="labels">
+            <label id="lb-post" for="Mail">Select your post </label>
+
+            @Html.DropDownListFor(x => x.Email.Mail, new List<SelectListItem>
+        {
+        new SelectListItem {Text = "Gmail", Value = "gmail", Selected = true },
+        new SelectListItem {Text = "OutLook", Value = "outlook" },
+        new SelectListItem {Text = "WP", Value = "wp" },
+        new SelectListItem {Text = "O2", Value = "o2" },
+        }, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Email.Mail, "", new { @class = "text-danger" })
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <label for="From">From </label>
+            @Html.TextBoxFor(x => x.Email.From, new {placeholder ="..."})
+            <br />
+            <hr>
+
+            <label for="To">To</label>
+            @Html.TextBoxFor(x => x.Email.To, new {placeholder ="..."})
+            <br />
+
+            <hr>
+
+            <label for="Title">Title </label>
+            @Html.TextBoxFor(x => x.Email.Title, new {placeholder ="..."})
+            <br />
+
+            <hr>
+            <label for="Text">Text</label>
+            @Html.TextBoxFor(x => x.Email.Text, new {placeholder ="..."})
+            <br />
+
+        </div>
+        <div style="clear:both"></div>
+        <div id="buttons">
+            <input type="submit" value="SEND" />
+        </div>
+    }
+</div>
+
+<div class="mailBox customScroll">
+    
+    @{
+        int num = 0;
+    }
+
+    @foreach(var e in Model.List)
+        {
+            num++;
+            string id = e.Uid;
+            string from = e.From.ToString();
+            string subject = e.Subject;
+            string date = e.Date.ToString();
+
+            string text = $"{num}. {from} | {subject} | {date}";
+
+        <div class="blok">
+                
+                 @Html.ActionLink(text, "SelectEmail", new { emailId = id})
+            </div>
+        }
+    
+</div>
+ 
+<div style="clear:both"></div>
+   
+
+
+
+    

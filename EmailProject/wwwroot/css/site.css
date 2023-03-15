@@ -1,0 +1,115 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-color:aliceblue;
+  margin-bottom: 60px;
+  font-size:1.3em;
+  font-family:'Segoe Print';
+}
+hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+form {
+   
+}
+label {
+    text-align: right;
+    clear: both;
+    float: left;
+    padding:10px;
+   
+}
+#buttons{
+    margin-top:40px;
+    text-align:center;
+}
+#lb-post{
+    
+    font-size:0.8em;
+}
+input[type=text] {
+    
+    border-radius:10px;
+    float:right;
+    background-color:beige;
+    margin:5px;
+    font-size:1em;
+    
+}
+input[type=text]:hover {
+   
+    background-color:blanchedalmond;
+  
+}
+input[type=text]::placeholder {
+    text-align:center;
+    font-size:1em;
+    
+}
+.form-control{
+    background-color: DodgerBlue;
+    border:1px solid black;
+    border-radius:10px;
+}
+input[type=submit] {
+    font-size: 2em;
+    background-color:lawngreen;
+}
+    
+
+input[type=submit]:hover {
+    font-size: 2em;
+    background-color:greenyellow;
+}
+
+.mailBox {
+    border: 2px solid gray;
+    float: left;
+    width: 45%;
+    margin: 10px;
+    max-height: 550px;
+    
+    overflow-y: auto;
+}
+.blok {
+    font-size: 0.7em;
+    margin-top: 10px;
+    background-color: white;
+    border: 1px solid black;
+    width: 100%;
+    height: 20px;
+  
+    overflow-x:auto;
+}
+.blok:hover {
+        background-color:lightsteelblue;
+
+}
+
+
+.customScroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+.customScroll::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgb(5, 52, 137);
+}
+
+.customScroll::-webkit-scrollbar-thumb {
+    background-color:deepskyblue;
+    outline: 1px solid slategrey;
+}
