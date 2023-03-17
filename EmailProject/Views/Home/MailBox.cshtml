@@ -1,0 +1,42 @@
+﻿@using EmailProject.Models;
+
+@model IndexModel;
+
+@{
+    var listMailBoxes = Model.ListMailBoxes;
+}
+
+<div class="mailBox customScroll">
+    <ul>
+        @foreach(var mb in listMailBoxes)
+        {
+        <li class="unactive">@Html.ActionLink(mb.Name, "GetEmails", new { filter = mb.Name})</li>          
+        }
+        
+
+
+    </ul>
+    @{
+        int num = 0;
+    }
+    @if (Model.ListEmails != null)
+    {
+        @foreach (var e in Model.ListEmails)
+        {
+            num++;
+            string id = e.Uid;
+            string from = e.From.ToString();
+            string subject = e.Subject;
+            string date = e.Date.ToString();
+
+            string text = $"{num}. {from} | {subject} | {date}";
+
+            <div class="blok customScroll">
+
+                @Html.ActionLink(text, "SelectEmail", new { emailId = id})
+            </div>
+        }
+    }
+
+
+</div>

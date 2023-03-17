@@ -1,0 +1,181 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    background: linear-gradient(45deg,rgb(10,20,3,0.85),rgb(18, 187, 187, 1));
+    width:100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-size: 1.3em;
+    /*font-family:'Segoe Print';*/
+    font-family: Arial;
+    overflow-y:scroll;
+}
+footer {
+    
+}
+section{
+
+}
+.container{
+    max-width:1500px;
+    margin:0px 50px 0px 50px;;
+    padding:0px;
+}
+header{
+    background: linear-gradient(-90deg,rgb(20,30,13,0.5),rgb(28, 197, 197, 0.5));
+   
+}
+.navbar{
+    border-bottom:2px solid white; 
+}
+hr {
+    margin-top: 5px;
+  
+}
+form {
+   
+}
+label {
+    text-align:center;
+   
+    
+    vertical-align:middle;
+
+   
+}
+#buttons{
+    margin-top:40px;
+    text-align:center;
+}
+#lb-post{
+    
+    font-size:0.8em;
+}
+input[type=text] {
+    
+    border-radius:10px;
+    float:right;
+    background-color:beige;
+    margin:5px;
+    font-size:1em;
+    
+}
+input[type=text]:hover {
+   
+    background-color:blanchedalmond;
+  
+}
+input[type=text]::placeholder {
+    text-align:center;
+    font-size:1em;
+    
+}
+.form-control{
+    background-color: DodgerBlue;
+    border:1px solid black;
+    border-radius:10px;
+}
+input[type=submit] {
+    font-size: 2em;
+    background-color:rgb(37, 122, 203,0.6);
+    border-radius:20px;
+    padding:5px 20px 5px 20px;
+}
+
+
+    input[type=submit]:hover {
+        font-size: 2em;
+        background-color: rgb(17, 102, 183,0.6);
+    }
+
+.mailBox {
+    border: 10px solid gray;
+    border-radius:20px;
+    float: left;
+    width: 45%;
+    margin: 10px;
+    padding:20px;
+    height: 550px;
+    
+    background:linear-gradient(45deg, rgb(5, 52, 137,0.1),rgb(18, 187, 187, 0.8));
+
+    overflow-y: auto;
+}
+.blok {
+    font-size: 0.7em;
+    margin-top: 10px;
+    background-color: rgb(13, 137, 477,0.2);
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    max-height: 50px;
+    font-weight:bold;
+}
+.blok:hover {
+        background-color:rgb(204, 204, 204);
+        font-size:0.75em;
+
+}
+.blok a {
+       
+        white-space: nowrap;
+        color: black;
+        text-decoration: none;
+}
+
+
+.customScroll::-webkit-scrollbar {
+    width:1px;
+}
+
+.customScroll::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgb(5, 52, 137);
+}
+
+.customScroll::-webkit-scrollbar-thumb {
+    background:linear-gradient(40deg,rgb(0,0,0,0.8),rgb(5, 104, 155,0.5));
+    outline: 1px solid slategrey;
+    border-radius:10px;
+}
+
+
+.mailBody {
+    border: 2px solid gray;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 550px;
+    overflow-x:inherit;
+    overflow-y:scroll;
+}
+.mailSubject {
+    
+    font-size: 10%;
+   
+}
+.mailSubject h1 {
+        font-size: 15em;
+        font-weight:bold;
+        font-style:italic;
+}
+.mailSubject h2 {
+        font-size: 10em;
+        font-weight:300;
+        font-style: italic;
+}  

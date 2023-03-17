@@ -20,16 +20,20 @@ namespace EmailProject.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            IndexModel model = new IndexModel();
-            model.List = GetEmails();
-            return View(model);
+            return View();
         }
         [HttpPost]
-        public IActionResult Index(IndexModel model)
+        public IActionResult Index(EmailModel model)
         {
-            EmailModel email = model.Email;
-
+            EmailModel email = model;
             send(email);
+         
+            return View(email);
+        }
+        public IActionResult MailBox()
+        {   
+            
+            var model = GetEmails("Inbox");
             return View(model);
         }
 
@@ -118,24 +122,28 @@ namespace EmailProject.Controllers
         }
 
 
-        public List<AE.Net.Mail.MailMessage> GetEmails()
+        public IndexModel GetEmails(string filter)
         {
             string email = "warmachine3001wm@gmail.com";
             string password = "aslfraaxhvbggcrs";
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             IC = new ImapClient("imap.gmail.com",email,password,AuthMethods.Login,993,true);
-            IC.SelectMailbox("INBOX");
+            IC.SelectMailbox(filter);
             int all = IC.GetMessageCount()-1;
+
+            var mailboxes = IC.ListMailboxes(string.Empty, "*");
             
-            for(int i=all;i>all-20; i--) {
+            for (int i=all;i>all-20; i--) {
                 var m=IC.GetMessage(i);
                
                     messages.Add(m);
 
                 
             }
-          
-          return messages;
+            IndexModel model = new IndexModel();
+            model.ListMailBoxes = mailboxes;
+            model.ListEmails = messages;
+            return model;
         }
 
         public string ConvertEmailBodyToHtml(AE.Net.Mail.MailMessage message)
