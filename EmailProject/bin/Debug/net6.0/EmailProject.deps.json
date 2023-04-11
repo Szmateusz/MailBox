@@ -9,6 +9,7 @@
       "EmailProject/1.0.0": {
         "dependencies": {
           "AE.Net.Mail": "1.7.10",
+          "HtmlAgilityPack": "1.11.46",
           "MailSystem.NET": "2.0.1",
           "Microsoft.AspNetCore.Authentication.Certificate": "6.0.15"
         },
@@ -21,6 +22,14 @@
           "lib/net45/AE.Net.Mail.dll": {
             "assemblyVersion": "1.7.10.0",
             "fileVersion": "1.7.10.0"
+          }
+        }
+      },
+      "HtmlAgilityPack/1.11.46": {
+        "runtime": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {
+            "assemblyVersion": "1.11.46.0",
+            "fileVersion": "1.11.46.0"
           }
         }
       },
@@ -127,6 +136,13 @@
       "sha512": "sha512-qOeui+HJQkonh7OCVfOLcuQtzsFYrNSLfKy8BMvnP237uDUSCn/9OT1Xt6Sr/pqOYbOgEFvUKH6Z2oa5r8IAfg==",
       "path": "ae.net.mail/1.7.10",
       "hashPath": "ae.net.mail.1.7.10.nupkg.sha512"
+    },
+    "HtmlAgilityPack/1.11.46": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dLMn4EVfJBHWmWK4Uh0XGD76FPLHI0qr2Tm0s1m/xmgiHb1JUb9zB8AzO8HtrkBBlMN6JfCUBYddhqC0hZNR+g==",
+      "path": "htmlagilitypack/1.11.46",
+      "hashPath": "htmlagilitypack.1.11.46.nupkg.sha512"
     },
     "MailSystem.NET/2.0.1": {
       "type": "package",

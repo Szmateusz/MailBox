@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "onGYL4++YwsD8ST9raT9qdycdhEmkZKRA7lagMk1EjTLzusTSSbfJEUvrcMgU+GWAbj9eypduXRzoF8AKlCRNg==",
+  "dgSpecHash": "m2UccZsJkIbcHOdaZvvEO3TcOWF8JTfktU32SmihB94c59YbVjo614N6Zvz+QIyrje9LfHrL/bTVxYJdF62aZg==",
   "success": true,
   "projectFilePath": "E:\\ASP.NET-App\\EmailProject\\EmailProject\\EmailProject\\EmailProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mati\\.nuget\\packages\\ae.net.mail\\1.7.10\\ae.net.mail.1.7.10.nupkg.sha512",
+    "C:\\Users\\Mati\\.nuget\\packages\\htmlagilitypack\\1.11.46\\htmlagilitypack.1.11.46.nupkg.sha512",
     "C:\\Users\\Mati\\.nuget\\packages\\mailsystem.net\\2.0.1\\mailsystem.net.2.0.1.nupkg.sha512",
     "C:\\Users\\Mati\\.nuget\\packages\\microsoft.aspnetcore.authentication.certificate\\6.0.15\\microsoft.aspnetcore.authentication.certificate.6.0.15.nupkg.sha512",
     "C:\\Users\\Mati\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",

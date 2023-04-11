@@ -43,3 +43,4 @@ E:\ASP.NET-App\EmailProject\EmailProject\EmailProject\obj\Debug\net6.0\EmailProj
 E:\ASP.NET-App\EmailProject\EmailProject\EmailProject\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Certificate.dll
 E:\ASP.NET-App\EmailProject\EmailProject\EmailProject\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
 E:\ASP.NET-App\EmailProject\EmailProject\EmailProject\bin\Debug\net6.0\AE.Net.Mail.dll
+E:\ASP.NET-App\EmailProject\EmailProject\EmailProject\bin\Debug\net6.0\HtmlAgilityPack.dll

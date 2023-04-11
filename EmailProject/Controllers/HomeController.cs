@@ -9,6 +9,8 @@ using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Text;
+using System.Xml;
+using HtmlAgilityPack;
 
 namespace EmailProject.Controllers
 {
@@ -43,8 +45,11 @@ namespace EmailProject.Controllers
 
             message = messages.FirstOrDefault(x => x.Uid == emailId);
 
-            var convertedMessage = message; //ConvertEmailBodyToHtml(message);
-            return View(convertedMessage);
+            var convertedMessage = ConvertEmailBodyToHtml(message);
+
+            TestClass test = new TestClass();
+            test.wiadomość = convertedMessage;
+            return View(test);
         }
         public bool send(EmailModel model)
         {
@@ -148,28 +153,40 @@ namespace EmailProject.Controllers
 
         public string ConvertEmailBodyToHtml(AE.Net.Mail.MailMessage message)
         {
-            var body = message.Body;
+            // Use HtmlAgilityPack to parse and clean up the message body
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(message.Body);
 
-            // Convert plain text to HTML
-            var htmlBody = new StringBuilder();
-           
-
-            // Convert links to HTML
-            var linkRegex = new Regex(@"(http|https)://[^\s]+");
-            var linkedBody = linkRegex.Replace(body, "<a href=\"$0\" target=\"_blank\">$0</a>");
-            htmlBody.AppendLine(linkedBody);
-
-            // Convert images to HTML
-            var imgRegex = new Regex(@"(http|https)://[^\s]+\.(jpg|jpeg|gif|png)");
-            var imgMatches = imgRegex.Matches(body);
-            foreach (Match match in imgMatches)
+            // Remove potentially harmful tags, such as script and iframe
+            var unwantedTags = new[] { "script", "iframe" };
+            foreach (var tag in unwantedTags)
             {
-                var imgSrc = match.Value;
-                htmlBody.AppendLine($"<img src=\"{imgSrc}\" alt=\"{imgSrc}\"/>");
+                var nodes = htmlDoc.DocumentNode.Descendants(tag).ToArray();
+                foreach (var node in nodes)
+                {
+                    node.Remove();
+                }
             }
 
+            // Remove any HTML comments
+            var comments = htmlDoc.DocumentNode.DescendantsAndSelf().Where(n => n.NodeType == HtmlNodeType.Comment).ToArray();
+            foreach (var comment in comments)
+            {
+                comment.Remove();
+            }
 
-            return htmlBody.ToString();
+            // Remove any inline styles, such as background-color
+            var inlineStyleRegex = new Regex("style=(\"|\')[^\"\'\\>]*?(\"|\')");
+            var elementsWithInlineStyle = htmlDoc.DocumentNode.Descendants().Where(d => d.Attributes.Any(a => a.Name == "style"));
+            foreach (var element in elementsWithInlineStyle)
+            {
+                var styleAttribute = element.Attributes["style"];
+                styleAttribute.Value = inlineStyleRegex.Replace(styleAttribute.Value, string.Empty);
+            }
+
+            var bodyNode = htmlDoc.DocumentNode.SelectSingleNode("//body");
+            var bodyContent = bodyNode.InnerHtml;
+            return bodyContent;
         }
 
     }

@@ -1,16 +1,7 @@
-﻿@model AE.Net.Mail.MailMessage;
+﻿@using EmailProject.Models;
+@model TestClass
 @{
-    string subject = Model.Subject;
-    string from = Model.From.ToString();
-    string date = Model.Date.ToString();
-
-    string body = Model.Body;
-    string? to = Model.To.FirstOrDefault().ToString();
-
+    Layout = null;
 }
 
-<div class="mailSubject"><h1>@subject</h1></div>
-
-<div class ="mailSubject"><h2>@from  ---> @to      | @date </h2></div>
-
-<div class="mailBody customScroll">@body</div>
+<div class="email-body">@Html.Raw(Model.wiadomość)</div>
