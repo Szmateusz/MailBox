@@ -27,6 +27,8 @@ namespace EmailProject.Controllers
         [HttpPost]
         public IActionResult Index(IndexViewModel model)
         {
+
+
             if (!ModelState.IsValid)
             {
                 TempData["ErrorMessage"] = "Logowanie zakończone niepowodzeniem";
@@ -189,15 +191,24 @@ namespace EmailProject.Controllers
             // Remove any inline styles, such as background-color
             var inlineStyleRegex = new Regex("style=(\"|\')[^\"\'\\>]*?(\"|\')");
             var elementsWithInlineStyle = htmlDoc.DocumentNode.Descendants().Where(d => d.Attributes.Any(a => a.Name == "style"));
+
             foreach (var element in elementsWithInlineStyle)
             {
                 var styleAttribute = element.Attributes["style"];
                 styleAttribute.Value = inlineStyleRegex.Replace(styleAttribute.Value, string.Empty);
             }
 
-            var bodyNode = htmlDoc.DocumentNode.SelectSingleNode("//body");
-            var bodyContent = bodyNode.InnerHtml;
-            return bodyContent;
+            try
+            {
+                var bodyNode = htmlDoc.DocumentNode.SelectSingleNode("//body");
+                var bodyContent = bodyNode.InnerHtml;
+                return bodyContent;
+
+
+            }
+            catch {}
+            return htmlDoc.Text;
+
         }
 
     }
