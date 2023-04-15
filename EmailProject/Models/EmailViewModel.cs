@@ -1,6 +1,6 @@
 ﻿namespace EmailProject.Models
 {
-    public class TestClass
+    public class EmailViewModel
     {
         public string wiadomość { get; set; }
     }

@@ -1,0 +1,7 @@
+﻿@if (TempData.ContainsKey("SuccessMessage"))
+{
+            <div class="alert alert-danger">@TempData["SuccessMessage"]</div>
+           
+}
+<a asp-controller="Home" asp-action="SendEmail">Wyślij emaila</a>
+<a asp-controller="Home" asp-action="MailBox">Sprawdź skrzynkę</a>

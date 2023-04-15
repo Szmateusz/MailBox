@@ -1,0 +1,63 @@
+﻿@using EmailProject.Models;
+
+@model EmailModel;
+@{
+    string data = null;
+
+
+ 
+
+}
+
+@if (TempData.ContainsKey("SuccessMessage"))
+{
+
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@TempData["SuccessMessage"]");
+        };
+    </script>
+}
+
+<section>
+ 
+    <div class="mailBox  customScroll">
+        @using (@Html.BeginForm("SendEmail", "Home", FormMethod.Post))
+        {
+
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.To)
+                @Html.TextBoxFor(m => m.To, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.To, "", new { @class = "text-danger" })
+            </div>
+
+                <hr>
+
+            <div class="form-group">
+                 @Html.LabelFor(m => m.Title)
+                 @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                 @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+            </div>
+
+                <hr>
+            <div class="form-group">
+                 @Html.LabelFor(m => m.Text)
+                 @Html.TextAreaFor(m => m.Text, new { @class = "form-control" , placeholder="......"})
+                  @Html.ValidationMessageFor(m => m.Text, "", new { @class = "text-danger" })
+            </div>
+
+          
+            <div id="buttons">
+                <input type="submit" value="Wyślij" />
+            </div>
+        }
+    </div>
+
+</section>
+
+   
+
+
+
+    

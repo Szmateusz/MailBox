@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "m2UccZsJkIbcHOdaZvvEO3TcOWF8JTfktU32SmihB94c59YbVjo614N6Zvz+QIyrje9LfHrL/bTVxYJdF62aZg==",
+  "dgSpecHash": "mt4EfaP2alEBgZZDCC3zyOmjnaBN8w9JK13ps764bFh6Fvl5etgMIQ7ujHDgDmvr9a983bg19DFusjucDNb8jw==",
   "success": true,
-  "projectFilePath": "E:\\ASP.NET-App\\EmailProject\\EmailProject\\EmailProject\\EmailProject.csproj",
+  "projectFilePath": "E:\\ASP.NET-App\\EmailProject\\EmailProject\\EmailProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mati\\.nuget\\packages\\ae.net.mail\\1.7.10\\ae.net.mail.1.7.10.nupkg.sha512",
     "C:\\Users\\Mati\\.nuget\\packages\\htmlagilitypack\\1.11.46\\htmlagilitypack.1.11.46.nupkg.sha512",

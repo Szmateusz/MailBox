@@ -25,11 +25,37 @@ namespace EmailProject.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Index(EmailModel model)
+        public IActionResult Index(IndexViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["ErrorMessage"] = "Logowanie zakończone niepowodzeniem";
+
+                return View(model);
+
+            }
+            TempData["SuccessMessage"] = "Logowanie zakończone pomyślnie. Wybierz dalszą akcję";
+
+            UserPropertiesClass.UserEmail = model.UserEmail;
+            UserPropertiesClass.EmailPassword = model.EmailPassword;
+            UserPropertiesClass.Mail = model.Mail;
+
+            return RedirectToAction("Actions","Home");
+        }
+        public IActionResult Actions()
+        {
+            return View();
+        }
+        public IActionResult SendEmail()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult SendEmail(EmailModel model)
         {
             EmailModel email = model;
             send(email);
-         
+
             return View(email);
         }
         public IActionResult MailBox()
@@ -47,22 +73,17 @@ namespace EmailProject.Controllers
 
             var convertedMessage = ConvertEmailBodyToHtml(message);
 
-            TestClass test = new TestClass();
+            EmailViewModel test = new EmailViewModel();
             test.wiadomość = convertedMessage;
             return View(test);
         }
         public bool send(EmailModel model)
         {
 
-            if(IsValidEmailAddress(model.From, model.To)) { }
-            else {
-                ViewData["data"] = "Check email addresses";
+            if (!ModelState.IsValid)
+            {
                 return false;
             }
-
-
-            
-
             Dictionary<string, string> listOfMails = new Dictionary<string, string>()
             {
                 {"gmail","smtp.gmail.com" },
@@ -70,23 +91,15 @@ namespace EmailProject.Controllers
                 {"outlook","smtp-mail.outlook.com." },
                 {"o2","smtp.o2.pl" }
             };
-            Dictionary<string,int> listOfPorts = new Dictionary<string,int>()
-            {
-                {"gmail" ,587 },
-                {"wp" ,465 },
-                {"outlook" ,587 },
-                {"o2" ,587 }
-            };
-            //warmachine3001wm@gmail.com
-            string password = "aslfraaxhvbggcrs";
+           
+           
+            string password = UserPropertiesClass.EmailPassword;
 
 
-            string server = listOfMails[model.Mail];
-            int port = listOfPorts[model.Mail];
-            
-
+            string server = listOfMails[UserPropertiesClass.Mail];
+           
             string to = model.To;
-            string from = model.From;
+            string from = UserPropertiesClass.UserEmail;
 
             string subject = model.Title;
             string body = model.Text;
@@ -95,44 +108,42 @@ namespace EmailProject.Controllers
 
             System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(server)
             {
-                Port= port,
+                Port= 587,
                 Credentials = new NetworkCredential(from,password),
                 EnableSsl= true
             };
             try
             {
                 client.Send(message);
-                ViewData["data"] = "email sending success";
-
-
-
+                TempData["SuccessMessage"] = "Wysyłanie zakończone sukcesem";
             }
             catch (Exception ex)
             {
                 
                 Console.WriteLine(ex.ToString());
 
-                ViewData["data"]= "email sending failed";
+                TempData["ErrorMessage"] = "Wysyłanie zakończone niepowodzeniem";
                 return false;
             }
             return true;
         }
 
-        public bool IsValidEmailAddress(string from,string to)
-        {
-            if (!string.IsNullOrEmpty(from) && new EmailAddressAttribute().IsValid(from)&& !string.IsNullOrEmpty(to) && new EmailAddressAttribute().IsValid(to))
-                return true;
-            else
-                return false;
-        }
-
-
         public IndexModel GetEmails(string filter)
         {
-            string email = "warmachine3001wm@gmail.com";
-            string password = "aslfraaxhvbggcrs";
+            Dictionary<string, string> listOfMails = new Dictionary<string, string>()
+            {
+                {"gmail","imap.gmail.com" },
+                {"wp","imap.wp.pl" },
+                {"outlook","imap-mail.outlook.com." },
+                {"o2","imap.o2.pl" }
+            };
+            string server = listOfMails[UserPropertiesClass.Mail];
+
+
+            string email = UserPropertiesClass.UserEmail;
+            string password = UserPropertiesClass.EmailPassword;
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            IC = new ImapClient("imap.gmail.com",email,password,AuthMethods.Login,993,true);
+            IC = new ImapClient(server,email,password,AuthMethods.Login,993,true);
             IC.SelectMailbox(filter);
             int all = IC.GetMessageCount()-1;
 

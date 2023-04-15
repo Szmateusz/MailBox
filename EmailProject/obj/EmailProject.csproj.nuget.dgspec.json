@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\ASP.NET-App\\EmailProject\\EmailProject\\EmailProject\\EmailProject.csproj": {}
+    "E:\\ASP.NET-App\\EmailProject\\EmailProject\\EmailProject.csproj": {}
   },
   "projects": {
-    "E:\\ASP.NET-App\\EmailProject\\EmailProject\\EmailProject\\EmailProject.csproj": {
+    "E:\\ASP.NET-App\\EmailProject\\EmailProject\\EmailProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ASP.NET-App\\EmailProject\\EmailProject\\EmailProject\\EmailProject.csproj",
+        "projectUniqueName": "E:\\ASP.NET-App\\EmailProject\\EmailProject\\EmailProject.csproj",
         "projectName": "EmailProject",
-        "projectPath": "E:\\ASP.NET-App\\EmailProject\\EmailProject\\EmailProject\\EmailProject.csproj",
+        "projectPath": "E:\\ASP.NET-App\\EmailProject\\EmailProject\\EmailProject.csproj",
         "packagesPath": "C:\\Users\\Mati\\.nuget\\packages\\",
-        "outputPath": "E:\\ASP.NET-App\\EmailProject\\EmailProject\\EmailProject\\obj\\",
+        "outputPath": "E:\\ASP.NET-App\\EmailProject\\EmailProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mati\\AppData\\Roaming\\NuGet\\NuGet.Config",

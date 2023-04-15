@@ -1,29 +1,11 @@
 ﻿@using EmailProject.Models;
 
-@model EmailModel;
+@model IndexViewModel
+
 @{
-    string data = null;
-
-
-    try
-    {
-        data = ViewData["data"].ToString();
-
-    }catch{}
-
 }
-
-@if (data!= null)
-{
-
-    <script type="text/javascript">
-        window.onload = function () {
-            alert("@data");
-        };
-    </script>
-}
-
 <section>
+
     <div class="mailBox  customScroll">
         @using (@Html.BeginForm("Index", "Home", FormMethod.Post))
         {
@@ -38,44 +20,38 @@
             new SelectListItem {Text = "O2", Value = "o2" },
             }, new { @class = "form-control" })
                 @Html.ValidationMessageFor(x => x.Mail, "", new { @class = "text-danger" })
-                <br />
-                <br />
-                <br />
-                <br />
-                
 
-                <label for="From">From </label>
-                @Html.TextBoxFor(x => x.From, new {placeholder ="..."})
-                <br />
-                <hr>
 
-                <label for="To">To</label>
-                @Html.TextBoxFor(x => x.To, new {placeholder ="..."})
-                <br />
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserEmail)
+                    @Html.TextBoxFor(m => m.UserEmail, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.UserEmail, "", new { @class = "text-danger" })
+                </div>
 
                 <hr>
 
-                <label for="Title">Title </label>
-                @Html.TextBoxFor(x => x.Title, new {placeholder ="..."})
-                <br />
+                <div class="form-group">
+                    @Html.LabelFor(m => m.EmailPassword)
+                    @Html.PasswordFor(m => m.EmailPassword, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.EmailPassword, "", new { @class = "text-danger" })
+                </div>
 
                 <hr>
-                <label for="Text">Text</label>
-                @Html.TextBoxFor(x => x.Text, new {placeholder ="..."})
-                <br />
 
             </div>
-            <div style="clear:both"></div>
+           
             <div id="buttons">
-                <input type="submit" value="SEND" />
+                <input type="submit" value="Zatwierdź" />
             </div>
         }
     </div>
 
+
 </section>
 
-   
+@if (TempData.ContainsKey("ErrorMessage"))
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
 
-
-
-    
