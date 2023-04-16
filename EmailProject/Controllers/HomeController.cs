@@ -60,10 +60,10 @@ namespace EmailProject.Controllers
 
             return View(email);
         }
-        public IActionResult MailBox()
+        public IActionResult MailBox(string filter)
         {   
             
-            var model = GetEmails("Inbox");
+            var model = GetEmails(filter);
             return View(model);
         }
 
@@ -117,14 +117,14 @@ namespace EmailProject.Controllers
             try
             {
                 client.Send(message);
-                TempData["SuccessMessage"] = "Wysyłanie zakończone sukcesem";
+                TempData["SuccessMessage"] = "Wysylanie zakonczone sukcesem";
             }
             catch (Exception ex)
             {
                 
                 Console.WriteLine(ex.ToString());
 
-                TempData["ErrorMessage"] = "Wysyłanie zakończone niepowodzeniem";
+                TempData["ErrorMessage"] = "Wysylanie zakonczone niepowodzeniem";
                 return false;
             }
             return true;
@@ -132,6 +132,8 @@ namespace EmailProject.Controllers
 
         public IndexModel GetEmails(string filter)
         {
+           
+
             Dictionary<string, string> listOfMails = new Dictionary<string, string>()
             {
                 {"gmail","imap.gmail.com" },
@@ -151,7 +153,8 @@ namespace EmailProject.Controllers
 
             var mailboxes = IC.ListMailboxes(string.Empty, "*");
             
-            for (int i=all;i>all-20; i--) {
+
+            for (int i=all;i>all-10 && i>=1; i--) {
                 var m=IC.GetMessage(i);
                
                     messages.Add(m);

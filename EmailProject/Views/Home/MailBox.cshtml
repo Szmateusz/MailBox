@@ -10,7 +10,9 @@
     <ul>
         @foreach(var mb in listMailBoxes)
         {
-        <li class="unactive">@Html.ActionLink(mb.Name, "GetEmails", new { filter = mb.Name})</li>          
+            <li class="unactive"><a asp-controller="Home" asp-action="MailBox" asp-route-filter="@mb.Name">@mb.Name</a></li>
+            
+
         }
         
 
@@ -33,7 +35,8 @@
 
             <div class="blok customScroll">
 
-                @Html.ActionLink(text, "SelectEmail", new { emailId = id})
+                <a asp-controller="Home" asp-action="SelectEmail" asp-route-emailId="@id">@text</a>
+               
             </div>
         }
     }
